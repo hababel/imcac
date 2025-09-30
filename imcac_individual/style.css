@@ -1,0 +1,88 @@
+/* Estilos personalizados mínimos para complementar Bootstrap */
+body {
+	background-color: #f8f9fa;
+}
+
+/* Mejora el contraste del radio button */
+.form-check-input {
+	border-color: #888;
+}
+
+
+.option {
+	cursor: pointer;
+	transition: all 0.2s ease-in-out;
+}
+
+.option:hover {
+	background-color: var(--bs-primary-bg-subtle);
+	transform: translateY(-4px);
+	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+	border-color: var(--bs-primary) !important;
+}
+
+/* Clases para el feedback visual de la opción seleccionada */
+.option.selected {
+	transform: translateY(-2px);
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+	border-width: 2px !important;
+}
+
+.option.selected.green {
+	background-color: var(--bs-success-bg-subtle);
+	border-color: var(--bs-success) !important;
+}
+
+.option.selected.yellow {
+	background-color: var(--bs-warning-bg-subtle);
+	border-color: var(--bs-warning) !important;
+}
+
+.option.selected.danger {
+	background-color: var(--bs-danger-bg-subtle);
+	border-color: var(--bs-danger) !important;
+}
+
+.feedback {
+	margin-top: 8px;
+	font-size: 0.9em;
+	display: none;
+	/* Se muestra con JS */
+}
+
+/* Asegura que la barra de progreso se mantenga visible al hacer scroll */
+.progress-container-sticky {
+	position: sticky;
+	top: 0;
+	z-index: 1020;
+	background-color: rgba(255, 255, 255, 0.9);
+	padding: 1rem 0;
+	backdrop-filter: blur(5px);
+}
+
+/* Colores de fondo para las dimensiones */
+#info-general .card-body {
+	background-color: #ffffff;
+	/* Blanco puro para la información general */
+}
+
+#dimension1 .card-body {
+	background-color: #f8f9fa;
+	/* Gris muy claro (Bootstrap bg-light) */
+}
+
+#dimension2 .card-body {
+	background-color: #f5f5f5;
+	/* Un gris ligeramente más oscuro para contraste */
+}
+
+#dimension3 .card-body {
+	background-color: #f8f9fa;
+	/* Volvemos al gris claro para alternar */
+}
+
+/* Separador visual entre preguntas */
+.question-item:not(:last-child) {
+	border-bottom: 1px solid var(--bs-border-color-translucent);
+	padding-bottom: 1.5rem;
+}

@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Índice de Madurez de Comunicación Asincrónica y Colaborativa (IMCAC) - Bootstrap</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+	<div class="container my-5">
+		<div class="col-lg-9 col-xl-8 mx-auto">
+
+			<div class="text-center mb-5">
+				<h1 class="display-5">Índice de Madurez (IMCAC)</h1>
+				<p class="lead text-muted">Una herramienta para evaluar la madurez de un equipo en la adopción de prácticas de
+					comunicación asincrónica y colaborativa.</p>
+			</div>
+
+			<form id="imcacForm">
+
+				<div class="progress-container-sticky mb-4">
+					<div class="d-flex align-items-center">
+						<div class="progress flex-grow-1 ms-2" role="progressbar" aria-label="Progreso del formulario"
+							aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="height: 38px;">
+							<div id="progressBar" class="progress-bar progress-bar-striped progress-bar-animated" style="width: 0%">0%
+							</div>
+						</div>
+						<small id="progressCounter" class="ms-3 text-muted text-nowrap">0/10 respondidas</small>
+						<i id="completionIcon" class="bi bi-check-circle-fill text-success ms-2"
+							style="display: none; font-size: 1.2rem;"></i>
+						<button type="submit" id="submitTopBtn" class="btn btn-primary ms-3 me-2" disabled>Calcular
+							IMCAC</button>
+					</div>
+				</div>
+
+
+				<div class="card mb-4 shadow-sm" id="info-general">
+					<div class="card-header">
+						<h2 class="h5 mb-0">Información General</h2>
+					</div>
+					<div class="card-body">
+						<div class="row g-3">
+							<div class="col-md-12">
+								<label for="nombre" class="form-label">Nombre:</label>
+								<input type="text" id="nombre" name="nombre" class="form-control" required value="Anibal Benitez">
+							</div>
+							<div class="col-md-12">
+								<label for="email" class="form-label">Email:</label>
+								<input type="email" id="email" name="email" class="form-control" required value="hababel@gmail.com">
+							</div>
+							<div class="col-md-12">
+								<label for="area" class="form-label">Nombre del área/equipo:</label>
+								<input type="text" id="area" name="area" class="form-control" required value="IT">
+							</div>
+							<div class="col-md-12">
+								<label for="rol" class="form-label">Rol en el equipo:</label>
+								<input type="text" id="rol" name="rol" class="form-control" required value="Jefe de IT">
+							</div>
+							<div class="col-12">
+								<label class="form-label d-block">Tamaño de tu equipo directo:</label>
+								<div class="option-list" data-question-id="q0">
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio" name="q0" id="q0_1" value="1-5" data-points="0"
+											required>
+										<label class="form-check-label" for="q0_1">1-5</label>
+									</div>
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio" name="q0" id="q0_2" value="6-15" data-points="0">
+										<label class="form-check-label" for="q0_2">6-15</label>
+									</div>
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio" name="q0" id="q0_3" value="16-20" data-points="0">
+										<label class="form-check-label" for="q0_3">16-20</label>
+									</div>
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio" name="q0" id="q0_4" value="+20" data-points="0">
+										<label class="form-check-label" for="q0_4">+20</label>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="card mb-4 shadow-sm" id="dimension1">
+					<div class="card-header">
+						<h2 class="h5 mb-0">1. Dimensión: Adopción y Uso de Herramientas (30%)</h2>
+						<small class="text-muted d-block">Criterio de evaluación: Evalúa el uso coherente y correcto de las
+							plataformas designadas.</small>
+					</div>
+					<div class="card-body">
+						<div class="question-item mb-4">
+							<h3 class="h6">Ante la necesidad de gestionar una instrucción o una tarea que requiere exactitud y
+								seguimiento, ¿qué canal utiliza el equipo?</h3>
+							<div class="option-list" data-question-id="q1">
+								<div class="form-check option border rounded p-3 mb-2">
+									<label class="form-check-label w-100" for="q1_1">
+										<input class="form-check-input" type="radio" name="q1" id="q1_1" value="1" data-points="10" required>
+										Se utiliza una herramienta de gestión de proyectos / tareas (ej. Planner, Jira o Trello).
+										<div class="feedback text-success-emphasis"><i class="bi bi-check-circle-fill me-2"></i>El uso de
+											una plataforma designada para seguimiento de tareas es un indicador clave de una comunicación
+											organizada y centralizada. Es la práctica más madura, ya que centraliza la comunicación y la
+											trazabilidad de tareas, evitando el caos y la pérdida de información que se genera en el mar de
+											chats o correos.</div>
+									</label>
+								</div>
+								<div class="form-check option border rounded p-3 mb-2">
+									<label class="form-check-label w-100" for="q1_2">
+										<input class="form-check-input" type="radio" name="q1" id="q1_2" value="2" data-points="5">
+										Se utiliza una herramienta de mensajería instantánea del trabajo o personal (ej. Teams o Slack).
+										<div class="feedback text-warning-emphasis"><i
+												class="bi bi-exclamation-triangle-fill me-2"></i>Aunque estas herramientas son útiles para
+											comunicaciones rápidas, no son las adecuadas para tareas que requieren un registro estructurado y
+											seguimiento a largo plazo. Esto puede llevar a la "responsabilidad diluida".</div>
+									</label>
+								</div>
+								<div class="form-check option border rounded p-3 mb-2">
+									<label class="form-check-label w-100" for="q1_3">
+										<input class="form-check-input" type="radio" name="q1" id="q1_3" value="3" data-points="0">
+										Se utiliza el correo electrónico o el WhatsApp.
+										<div class="feedback text-danger-emphasis"><i class="bi bi-x-circle-fill me-2"></i>Recurrir a
+											herramientas no autorizadas o métodos ineficaces reduce la colaboración, la trazabilidad y la
+											organización, ya que, estas herramientas, no fueron diseñadas para la gestión o seguimiento de
+											tareas o proyectos.</div>
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="question-item mb-4">
+							<h3 class="h6">Cuando el equipo (varias personas) trabajan en un mismo documento, ¿cuál es el método más común?</h3>
+							<div class="option-list" data-question-id="q2">
+								<div class="form-check option border rounded p-3 mb-2">
+									<label class="form-check-label w-100" for="q2_1">
+										<input class="form-check-input" type="radio" name="q2" id="q2_1" value="1" data-points="10"
+											required>
+										Se comparte un enlace a un único documento en la nube (ej. SharePoint, OneDrive, Google Drive).
+										<div class="feedback text-success-emphasis"><i class="bi bi-check-circle-fill me-2"></i>Trabajar
+											sobre un único documento compartido asegura que todos tengan acceso a la misma "fuente de
+											verdad", eliminando la confusión de versiones.</div>
+									</label>
+								</div>
+								<div class="form-check option border rounded p-3 mb-2">
+									<label class="form-check-label w-100" for="q2_2">
+										<input class="form-check-input" type="radio" name="q2" id="q2_2" value="2" data-points="5">
+										Se adjunta el archivo en un correo electrónico o en un mensaje de Teams.
+										<div class="feedback text-warning-emphasis"><i class="bi bi-exclamation-triangle-fill me-2"></i>El
+											envío de archivos adjuntos genera múltiples versiones del mismo archivo, lo que dificulta la
+											integración de cambios, el seguimiento y genera confusión sobre cuál es la versión más
+											actualizada.</div>
+									</label>
+								</div>
+								<div class="form-check option border rounded p-3 mb-2">
+									<label class="form-check-label w-100" for="q2_3">
+										<input class="form-check-input" type="radio" name="q2" id="q2_3" value="3" data-points="0">
+										Se utilizan medios físicos como memorias USB o discos duros externos.
+										<div class="feedback text-danger-emphasis"><i class="bi bi-x-circle-fill me-2"></i>Esta práctica es
+											ineficaz y riesgosa. Compromete la seguridad de la información, dificulta el acceso simultáneo y
+											la trazabilidad del equipo.</div>
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="question-item mb-4">
+							<h3 class="h6">¿Existe una estructura clara y consistente para la ordenación y clasificación de documentos
+								y carpetas en los repositorios compartidos del equipo ?</h3>
+							<div class="option-list" data-question-id="q3">
+								<div class="form-check option border rounded p-3 mb-2">
+									<label class="form-check-label w-100" for="q3_1">
+										<input class="form-check-input" type="radio" name="q3" id="q3_1" value="1" data-points="10"
+											required>
+										Sí. El equipo utiliza un esquema de nomenclatura y organización de archivos que es consistente y conocido
+										por todos.
+										<div class="feedback text-success-emphasis"><i class="bi bi-check-circle-fill me-2"></i>
+											Una estructura de organización clara y consistente facilita la búsqueda autónoma de documentos,
+											fomenta la corresponsabilidad y mantiene el repositorio como la "única fuente de verdad" para el equipo.
+										</div>
+									</label>
+								</div>
+								<div class="form-check option border rounded p-3 mb-2">
+									<label class="form-check-label w-100" for="q3_2">
+										<input class="form-check-input" type="radio" name="q3" id="q3_2" value="2" data-points="5">
+										A menudo, en algunos archivos, pero no siempre.
+										<div class="feedback text-warning-emphasis"><i class="bi bi-exclamation-triangle-fill me-2"></i>
+											La falta de consistencia genera incertidumbre y dificulta la búsqueda de documentos, lo que a
+											menudo requiere que los
+											miembros del equipo pidan ayuda en lugar de encontrar la información por sí mismos.
+										</div>
+									</label>
+								</div>
+								<div class="form-check option border rounded p-3 mb-2">
+									<label class="form-check-label w-100" for="q3_3">
+										<input class="form-check-input" type="radio" name="q3" id="q3_3" value="3" data-points="0">
+										No, cada persona del equipo decide qué nombre ponerle a su archivo y en donde cree conveniente guardarlo.
+										<div class="feedback text-danger-emphasis"><i class="bi bi-x-circle-fill me-2"></i>
+											La falta de un esquema de organización común crea caos y dificulta la localización de la
+											información, lo que lleva a la
+											duplicación de esfuerzos y la dependencia de otros para encontrar documentos.
+										</div>
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="question-item mb-4">
+							<h3 class="h6">Cuando necesita encontrar un documento, ¿cómo se guía para localizarlo de forma fácil y
+								autónoma?</h3>
+							<div class="option-list" data-question-id="q4">
+								<div class="form-check option border rounded p-3 mb-2">
+									<label class="form-check-label w-100" for="q4_1">
+										<input class="form-check-input" type="radio" name="q4" id="q4_1" value="1" data-points="10"
+											required>
+										Me guío por la estructura de carpetas (por proceso, tipo de documento o consecutivo) y utilizo las funciones de búsqueda
+										de la plataforma, encontrándose de manera fácil e independiente
+										<div class="feedback text-success-emphasis"><i class="bi bi-check-circle-fill me-2"></i>
+											Utilizar una estructura de carpetas definida y las funciones de búsqueda de la plataforma
+											demuestra una comprensión madura del uso de herramientas. Esto fomenta la autonomía y la
+											eficiencia.
+										</div>
+									</label>
+								</div>
+								<div class="form-check option border rounded p-3 mb-2">
+									<label class="form-check-label w-100" for="q4_2">
+										<input class="form-check-input" type="radio" name="q4" id="q4_2" value="2" data-points="5">
+										Le pregunto a la persona propietaria del documento o busco en el historial de correos y chats, lo que me toma tiempo,
+										pero lo encuentro.
+										<div class="feedback text-warning-emphasis"><i class="bi bi-exclamation-triangle-fill me-2"></i>
+											Este enfoque depende de la disponibilidad de otros y de canales no estructurados, lo que consume
+											tiempo y no fomenta la autonomía. Es una práctica ineficaz y refleja una falta de organización.
+										</div>
+									</label>
+								</div>
+								<div class="form-check option border rounded p-3 mb-2">
+									<label class="form-check-label w-100" for="q4_3">
+										<input class="form-check-input" type="radio" name="q4" id="q4_3" value="3" data-points="0">
+										No sé dónde buscarlo y siempre tengo que pedir que me reenvíen el documento.
+										<div class="feedback text-danger-emphasis"><i class="bi bi-x-circle-fill me-2"></i>
+											Esta práctica demuestra una dependencia total de otros para obtener información, lo que genera
+											retrasos, interrupciones y una clara ineficiencia en el flujo de trabajo
+										</div>
+									</label>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="card mb-4 shadow-sm" id="dimension2">
+					<div class="card-header">
+						<h2 class="h5 mb-0">2. Dimensión: Calidad de los Mensajes Asincrónicos (40%)</h2>
+						<small class="text-muted d-block">Criterio de evaluación: Evalúa la claridad, precisión y profesionalismo
+							con los que se elaboran los mensajes para evitar malentendidos.</small>
+					</div>
+					<div class="card-body">
+						<div class="question-item mb-4">
+							<h3 class="h6">Cuando una persona del equipo envía una instrucción, solicitud o cualquier tipo de requerimiento, ¿qué tan clara y
+							completa es la información que se recibe?</h3>
+							<div class="option-list" data-question-id="q5">
+								<div class="form-check option border rounded p-3 mb-2">
+									<label class="form-check-label w-100" for="q5_1">
+										<input class="form-check-input" type="radio" name="q5" id="q5_1" value="1" data-points="10"
+											required>
+										La información es clara, concisa y completa. No es necesario pedir aclaraciones adicionales ni hacer llamadas o reuniones para entenderla.
+										<div class="feedback text-success-emphasis"><i class="bi bi-check-circle-fill me-2"></i>
+											Una comunicación clara y completa evita la confusión, los retrasos y los conflictos, y reduce la
+											necesidad de interacciones sincrónicas como llamadas o reuniones, fomenta la autonomía y se tiene 
+											la responsabilidad tanto del emisor como del receptor.
+										</div>
+									</label>
+								</div>
+								<div class="form-check option border rounded p-3 mb-2">
+									<label class="form-check-label w-100" for="q5_2">
+										<input class="form-check-input" type="radio" name="q5" id="q5_2" value="2" data-points="5">
+										Regularmente tengo que pedir más información o aclaraciones, lo que me toma tiempo para interpretar
+										la solicitud.
+										<div class="feedback text-warning-emphasis"><i class="bi bi-exclamation-triangle-fill me-2"></i>
+											La baja calidad del mensaje consume tiempo, genera frustraciones, fricción y demuestra una falta de
+											"responsabilidad del emisor". Se debe evitar la información confusa y sin importancia.
+										</div>
+									</label>
+								</div>
+								<div class="form-check option border rounded p-3 mb-2">
+									<label class="form-check-label w-100" for="q5_3">
+										<input class="form-check-input" type="radio" name="q5" id="q5_3" value="3" data-points="0">
+										La comunicación es confusa, se requieren varias interacciones (mensajes, chats, llamadas o reuniones) solo para entender
+										lo que se necesita.
+										<div class="feedback text-danger-emphasis"><i class="bi bi-x-circle-fill me-2"></i>
+											Este nivel de comunicación es un obstáculo para la productividad y demuestra que el equipo depende
+											en gran medida de la comunicación sincrónica para aclarar lo que debió ser claro desde un
+											principio y de manera asincrónica.
+										</div>
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="question-item mb-4">
+							<h3 class="h6">¿El equipo utiliza un tono profesional y respetuoso en la comunicación escrita, incluso en
+								situaciones de desacuerdo?</h3>
+							<div class="option-list" data-question-id="q6">
+								<div class="form-check option border rounded p-3 mb-2">
+									<label class="form-check-label w-100" for="q6_1">
+										<input class="form-check-input" type="radio" name="q6" id="q6_1" value="1" data-points="10"
+											required>
+										Sí, siempre. El equipo mantiene un tono profesional, lo que fomenta un ambiente de respeto y colaboración.
+										<div class="feedback text-success-emphasis"><i class="bi bi-check-circle-fill me-2"></i>
+											Mantener un tono profesional y respetuoso, incluso al expresar desacuerdos, es crucial para el buen ambiente de trabajo y para la
+											efectividad de la comunicación asincrónica. Fomenta la colaboración y evita los malentendidos
+											causados por el tono.
+										</div>
+									</label>
+								</div>
+								<div class="form-check option border rounded p-3 mb-2">
+									<label class="form-check-label w-100" for="q6_2">
+										<input class="form-check-input" type="radio" name="q6" id="q6_2" value="2" data-points="5">
+										A veces. El uso ocasional de frases pasivo-agresivas.
+										<div class="feedback text-warning-emphasis"><i class="bi bi-exclamation-triangle-fill me-2"></i>
+											El uso de un tono inapropiado, como el lenguaje pasivo-agresivo, puede dañar las relaciones
+											interpersonales y crear un ambiente hostil, lo que dificulta la colaboración y la comunicación.
+										</div>
+									</label>
+								</div>
+								<div class="form-check option border rounded p-3 mb-2">
+									<label class="form-check-label w-100" for="q6_3">
+										<input class="form-check-input" type="radio" name="q6" id="q6_3" value="3" data-points="0">
+										No, a menudo hay malentendidos y conflictos debido al tono inapropiado en los mensajes.
+										<div class="feedback text-danger-emphasis"><i class="bi bi-x-circle-fill me-2"></i>
+											El uso de un tono inapropiado en los mensajes escritos demuestra una falta de profesionalismo y un
+											problema grave en la cultura del equipo, lo que afecta directamente la calidad de la comunicación.
+										</div>
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="question-item mb-4">
+							<h3 class="h6">Cuando se realizan cambios importantes (ej. cancelación de una reunión, cambio en un valor límite o modificación en una especificación), ¿cómo se comunica?</h3>
+							<div class="option-list" data-question-id="q7">
+								<div class="form-check option border rounded p-3 mb-2">
+									<label class="form-check-label w-100" for="q7_1">
+										<input class="form-check-input" type="radio" name="q7" id="q7_1" value="1" data-points="10"
+											required>
+										Los cambios se documentan inmediatamente en la herramienta correspondiente (documento, calendario, etc.) y se reafirma con una notificación de cambio.
+										<div class="feedback text-success-emphasis"><i class="bi bi-check-circle-fill me-2"></i>
+											Documentar los cambios directamente en la herramienta garantiza que la información esté
+											centralizada y actualizada. Realizando notificaciones a los interesados reafirma la responsabilidad del emisor en asegurarse
+											de que todos estén informados.  Esto evita la confusión y asegura que todos los miembros del equipo accedan a la versión correcta.
+										</div>
+									</label>
+								</div>
+								<div class="form-check option border rounded p-3 mb-2">
+									<label class="form-check-label w-100" for="q7_2">
+										<input class="form-check-input" type="radio" name="q7" id="q7_2" value="2" data-points="5">
+										Se envía un correo electrónico a todos los involucrados o se publica un mensaje rápido en un chat de Teams o WhatsApp.
+										<div class="feedback text-warning-emphasis"><i class="bi bi-exclamation-triangle-fill me-2"></i>
+											Este método depende de la "lectura selectiva" de cada receptor y no garantiza que la información sea vista o comprendida por todos. No es una forma eficaz de asegurar que los cambios importantes queden registrados para una futura consultas de forma facil y autonoma.
+										</div>
+									</label>
+								</div>
+								<div class="form-check option border rounded p-3 mb-2">
+									<label class="form-check-label w-100" for="q7_3">
+										<input class="form-check-input" type="radio" name="q7" id="q7_3" value="3" data-points="0">
+										Los cambios se informan de manera verbal en una reunión o una llamada.
+										<div class="feedback text-danger-emphasis"><i class="bi bi-x-circle-fill me-2"></i>
+											Este método no deja un registro escrito y depende de la memoria de los participantes. Es ineficaz para asegurar que todos estén informados y puede llevar a malentendidos o falta de seguimiento.
+										</div>
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="question-item mb-4">
+							<h3 class="h6">¿El equipo utiliza mecanismos (ej. confirmaciones de lectura,reacciones, resúmenes) para asegurar que los mensajes
+							importantes han sido recibidos y hay algún tipo de interacción con por los receptores?</h3>
+							<div class="option-list" data-question-id="q8">
+								<div class="form-check option border rounded p-3 mb-2">
+									<label class="form-check-label w-100" for="q8_1">
+										<input class="form-check-input" type="radio" name="q8" id="q8_1" value="1" data-points="10"
+											required>
+										Sí, de manera consistente. Utilizamos las funcionalidades de las herramientas para interactuar con
+										la comunicación enviada.
+										<div class="feedback text-success-emphasis"><i class="bi bi-check-circle-fill me-2"></i>
+											El uso consistente de mecanismos de confirmación asegura que los mensajes importantes sean
+											reconocidos y comprendidos por todos los miembros del equipo, reduciendo la incertidumbre y
+											mejorando la responsabilidad tanto del receptor como del emisor.
+										</div>
+									</label>
+								</div>
+								<div class="form-check option border rounded p-3 mb-2">
+									<label class="form-check-label w-100" for="q8_2">
+										<input class="form-check-input" type="radio" name="q8" id="q8_2" value="2" data-points="5">
+										A veces. La confirmación es irregular y a menudo se requiere preguntar por un "ok" o "recibido" en un mensaje o chat adicional.
+										<div class="feedback text-warning-emphasis"><i class="bi bi-exclamation-triangle-fill me-2"></i>
+											La confirmación irregular puede generar incertidumbre, malentendidos y falta de seguimiento, ya
+											que no todos los miembros del equipo están alineados sobre si un mensaje ha sido recibido y
+											comprendido. Requiere interacciones adicionales, lo que demuestra una ineficiencia en la
+											comunicación del equipo.
+										</div>
+									</label>
+								</div>
+								<div class="form-check option border rounded p-3 mb-2">
+									<label class="form-check-label w-100" for="q8_3">
+										<input class="form-check-input" type="radio" name="q8" id="q8_3" value="3" data-points="0">
+										No. Se asume que: ‘mensaje enviado es igual a mensaje recibido’..
+										<div class="feedback text-danger-emphasis"><i class="bi bi-x-circle-fill me-2"></i>
+											Asumir que un mensaje ha sido recibido sin confirmación es una práctica arriesgada y demuestra una
+											falta de corresponsabilidad por parte de los miembros del equipo. Esto puede llevar a errores,
+											falta de seguimiento y la necesidad de interacciones sincrónicas para aclarar lo que debió ser
+											claro desde un principio.
+										</div>
+									</label>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="card mb-4 shadow-sm" id="dimension3">
+					<div class="card-header">
+						<h2 class="h5 mb-0">3. Dimensión: Cultura de la Corresponsabilidad y la Colaboración (30%)</h2>
+						<small class="text-muted d-block">Criterio de evaluación: Evalúa el nivel de compromiso del equipo con la
+							colaboración y la responsabilidad.</small>
+					</div>
+					<div class="card-body">
+						<div class="question-item mb-4">
+							<h3 class="h6">Cuando se genera una información o documento que podría ser útil para el equipo, ¿qué se
+								hace?</h3>
+							<div class="option-list" data-question-id="q9">
+								<div class="form-check option border rounded p-3 mb-2">
+									<label class="form-check-label w-100" for="q9_1">
+										<input class="form-check-input" type="radio" name="q9" id="q9_1" value="1" data-points="10"
+											required>
+										Sé que debo definir un nombre según la estructura y dejarlo en un canal o repositorio central
+										designado para ello.
+										<div class="feedback text-success-emphasis"><i class="bi bi-check-circle-fill me-2"></i>
+											Esta práctica demuestra una alta madurez en la cultura del equipo, ya que fomenta la colaboración,
+											la autonomía y la responsabilidad compartida, donde se entiende que el éxito del equipo es el
+											propio.
+										</div>
+									</label>
+								</div>
+								<div class="form-check option border rounded p-3 mb-2">
+									<label class="form-check-label w-100" for="q9_2">
+										<input class="form-check-input" type="radio" name="q9" id="q9_2" value="2" data-points="5">
+										Lo genero y lo guardo en algún sitio de mi computador y espero a que alguien lo solicite para compartirlo por
+										correo o chat.
+										<div class="feedback text-warning-emphasis"><i class="bi bi-exclamation-triangle-fill me-2"></i>
+											Guardar la información en una ubicación personal limita la transparencia, fomenta una mentalidad
+											de "mi trabajo" en lugar de "nuestro trabajo" y crea una dependencia ineficaz de una sola persona
+										</div>
+									</label>
+								</div>
+								<div class="form-check option border rounded p-3 mb-2">
+									<label class="form-check-label w-100" for="q9_3">
+										<input class="form-check-input" type="radio" name="q9" id="q9_3" value="3" data-points="0">
+										Se mantiene la información de forma personal y se muestra el día de la reunión.
+										<div class="feedback text-danger-emphasis"><i class="bi bi-x-circle-fill me-2"></i>
+											Esta práctica refleja una falta de cultura colaborativa y responsabilidad compartida, lo que puede
+											llevar a la pérdida de información valiosa y a la dependencia excesiva de interacciones
+											sincrónicas o de una sola persona para compartir conocimientos. Demuestra una falta de comprensión
+											de los beneficios de la comunicación asincrónica y la corresponsabilidad.
+										</div>
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="question-item mb-4">
+							<h3 class="h6">Cuando se necesita definir un procedimiento o un estándar de trabajo, ¿cómo se asegura que
+								sea la única fuente de verdad?</h3>
+							<div class="option-list" data-question-id="q10">
+								<div class="form-check option border rounded p-3 mb-2">
+									<label class="form-check-label w-100" for="q10_1">
+										<input class="form-check-input" type="radio" name="q10" id="q10_1" value="1" data-points="10"
+											required>
+										La información se documenta en un repositorio central del equipo (ej. SharePoint, Wiki).
+										<div class="feedback text-success-emphasis"><i class="bi bi-check-circle-fill me-2"></i>
+											Documentar procedimientos en un repositorio central asegura que todos los miembros del equipo
+											tengan acceso a la información más actualizada y le da la posibilidad a cualquier persona del
+											equipo consultarla de forma autónoma, facilitando la colaboración y fomentando una cultura de
+											transparencia.
+										</div>
+									</label>
+								</div>
+								<div class="form-check option border rounded p-3 mb-2">
+									<label class="form-check-label w-100" for="q10_2">
+										<input class="form-check-input" type="radio" name="q10" id="q10_2" value="2" data-points="5">
+										La información se envía por correo electrónico o se comparte en un chat.
+										<div class="feedback text-warning-emphasis"><i class="bi bi-exclamation-triangle-fill me-2"></i>
+											Este método puede llevar a la dispersión de la información, ya que en el mar de correos y chats
+											pueden perderse o ser difíciles de localizar. No garantiza que todos los miembros del equipo
+											tengan acceso a la versión más actualizada.
+										</div>
+									</label>
+								</div>
+								<div class="form-check option border rounded p-3 mb-2">
+									<label class="form-check-label w-100" for="q10_3">
+										<input class="form-check-input" type="radio" name="q10" id="q10_3" value="3" data-points="0">
+										La información se transmite de forma verbal o en conversaciones de chat.
+										<div class="feedback text-danger-emphasis"><i class="bi bi-x-circle-fill me-2"></i>
+											Este enfoque no deja un registro escrito y depende de la memoria de los participantes, lo que
+											puede llevar a malentendidos, pérdida de información, es difícil de rastrear y verificar, y una
+											clara ineficiencia en el flujo de trabajo.
+										</div>
+									</label>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="d-grid gap-2">
+					<button type="submit" class="btn btn-primary btn-lg">Calcular IMCAC</button>
+				</div>
+			</form>
+
+			<div id="result" class="alert alert-primary mt-5 p-4" role="alert" style="display: none;" aria-live="polite">
+				<h2 class="alert-heading h4">¡Gracias por completar la evaluación!</h2>
+				<p>Hola <strong id="resultNombre"></strong>, aquí tienes un análisis de las prácticas de comunicación de tu
+					equipo. Recuerda que este índice no es una calificación, sino una guía para identificar oportunidades de
+					mejora que pueden hacer su trabajo diario más fluido y colaborativo. ¡Veamos juntos los resultados!</p>
+				<hr>
+				<div class="row mb-3">
+					<div class="col-md-12">
+						<p class="mb-1"><strong>Equipo:</strong> <span id="resultArea"></span></p>
+						<p class="mb-0"><strong>Rol:</strong> <span id="resultRol"></span></p>
+					</div>
+					<div class="col-md-12">
+						<p class="mb-1"><strong>Email:</strong> <span id="resultEmail"></span></p>
+					</div>
+				</div>
+
+				<div class="bg-white p-3 rounded row">
+					<div class="col-md-12">
+						<h3 class="h5 mb-3">Resultado del IMCAC</h3>
+						<p><strong>Puntuación Total:</strong> <span id="totalScore" class="fw-bold"></span></p>
+						<p class="mb-1"><strong>Nivel de Madurez:</strong> <span id="maturityLevel"></span></p>
+						<p class="mb-0"><small id="maturityExplanation"></small></p>
+					</div>
+				</div>
+
+				<div class="bg-white p-3 rounded row mt-3">
+					<div class="col-md-12" style="min-height: 450px;">
+						<canvas id="radarChart"></canvas>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<script src="app.js"></script>
+</body>
+
+</html>

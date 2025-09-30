@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Índice de Madurez de Comunicación Asincrónica y Colaborativa (IMCAC)</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			margin: 20px;
+			background-color: #f4f4f4;
+		}
+
+		.container {
+			background-color: #fff;
+			padding: 30px;
+			border-radius: 8px;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+			max-width: 800px;
+			margin: auto;
+		}
+
+		h1,
+		h2 {
+			color: #333;
+		}
+
+		.question-group {
+			margin-bottom: 20px;
+			padding: 15px;
+			border: 1px solid #ddd;
+			border-radius: 5px;
+			background-color: #f9f9f9;
+		}
+
+		.question-group h3 {
+			margin-top: 0;
+			color: #555;
+		}
+
+		.option {
+			margin-bottom: 10px;
+		}
+
+		/* Modificación clave: cada label como un bloque */
+		.option-list label {
+			display: block;
+			/* Hace que cada label ocupe su propia línea */
+			cursor: pointer;
+			padding: 8px;
+			border: 1px solid #eee;
+			border-radius: 4px;
+			transition: background-color 0.3s ease;
+			margin-bottom: 5px;
+			/* Espacio entre opciones */
+		}
+
+		/* Estilo para la opción seleccionada */
+		.option-list label.selected {
+			border-width: 2px;
+			padding: 7px;
+			/* Ajuste para compensar el borde */
+		}
+
+		.option-list label:hover {
+			background-color: #e9e9e9;
+		}
+
+		.option-list input[type="radio"] {
+			margin-right: 10px;
+		}
+
+		.feedback {
+			margin-top: 5px;
+			padding: 5px;
+			border-radius: 3px;
+			font-size: 0.9em;
+			display: none;
+		}
+
+		.green,
+		.selected.green {
+			background-color: #d4edda;
+			color: #155724;
+			border: 1px solid #c3e6cb;
+		}
+
+		.yellow,
+		.selected.yellow {
+			background-color: #fff3cd;
+			color: #856404;
+			border: 1px solid #ffeeba;
+		}
+
+		.red,
+		.selected.red {
+			background-color: #f8d7da;
+			color: #721c24;
+			border: 1px solid #f5c6cb;
+		}
+
+		.progress-bar-container {
+			width: 100%;
+			background-color: #e0e0e0;
+			border-radius: 5px;
+			margin-bottom: 20px;
+			position: sticky;
+			top: 0;
+			z-index: 1000;
+		}
+
+		.progress-bar {
+			width: 0%;
+			height: 20px;
+			background-color: #007bff;
+			border-radius: 5px;
+			text-align: center;
+			color: white;
+			line-height: 20px;
+			transition: width 0.5s ease-in-out;
+		}
+
+		button {
+			background-color: #007bff;
+			color: white;
+			padding: 10px 20px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			font-size: 16px;
+			margin-top: 20px;
+		}
+
+		button:hover {
+			background-color: #0056b3;
+		}
+
+		#result {
+			margin-top: 30px;
+			padding: 20px;
+			border: 2px dashed #007bff;
+			border-radius: 8px;
+			background-color: #e7f3ff;
+			display: none;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container">
+		<h1>Índice de Madurez de Comunicación Asincrónica y Colaborativa (IMCAC)</h1>
+		<p>Índice de madurez de comunicación asincrónica y colaborativa (IMCAC) es una herramienta para evaluar el nivel de
+			madurez de un equipo en la adopción de prácticas de comunicación asincrónica. Responda a las siguientes preguntas
+			con la opción que mejor describa las prácticas de su equipo.</p>
+
+		<form id="imcacForm">
+			<div class="progress-bar-container">
+				<div id="progressBar" class="progress-bar">0%</div>
+			</div>
+
+
+			<div class="question-group">
+				<h3>Información General</h3>
+				<div class="option">
+					<label for="nombre">Nombre:</label>
+					<input type="text" id="nombre" name="nombre" required>
+				</div>
+				<div class="option">
+					<label for="email">Email:</label>
+					<input type="email" id="email" name="email" required>
+				</div>
+				<div class="option">
+					<label for="area">¿Cuál es el nombre del área/equipo al que pertenece?</label>
+					<input type="text" id="area" name="area" required>
+				</div>
+				<div class="option">
+					<label for="rol">¿Cuál es el rol que desempeñas en el equipo?</label>
+					<input type="text" id="rol" name="rol" required>
+				</div>
+				<div class="option">
+					<label>¿Cuál es el tamaño de tu equipo directo?</label>
+					<div class="option-list" data-question-id="q0">
+						<label><input type="radio" name="q0" value="1-5" data-points="0" required> 1-5</label>
+						<label><input type="radio" name="q0" value="6-15" data-points="0"> 6-15</label>
+						<label><input type="radio" name="q0" value="16-20" data-points="0"> 16-20</label>
+						<label><input type="radio" name="q0" value="+20" data-points="0"> +20</label>
+					</div>
+				</div>
+			</div>
+
+			<div class="question-group" id="dimension1">
+				<h2>1. PD1-Dimensión: adopción y uso de herramientas (30%)</h2>
+				<p>Esta dimensión evalúa el uso coherente y correcto de las plataformas de comunicación y colaboración
+					designadas.</p>
+
+				<div class="question-item">
+					<h3>Ante la necesidad de gestionar una instrucción o una tarea que requiere exactitud y seguimiento, ¿qué canal utiliza el equipo?</h3>
+					<div class="option-list" data-question-id="q1" data-dimension="1">
+						<label><input type="radio" name="q1" value="1" data-points="10" required> Se utiliza una herramienta de gestión de proyectos / tareas (ej. Planner, Jira o Trello).
+							<div class="feedback">El uso de una plataforma designada para seguimiento de tareas es un indicador clave de una comunicación organizada y centralizada. Esto demuestra que el equipo sigue las directrices y protocolos establecidos para facilitar la coordinación y el seguimiento de la información.</div>
+						</label>
+						<label><input type="radio" name="q1" value="2" data-points="5"> Se utiliza una herramienta de mensajería instantánea del trabajo o personal (ej. Teams o Slack, Whatsapp).
+							<div class="feedback">La inconsistencia en el uso de la herramienta adecuada para el seguimiento de tareas genera dispersión de la información (la informacion dispersa en todos los canales y medios por donde me comunico) y confusión sobre dónde encontrar los	mensajes importantes. Esta práctica puede comprometer la seguridad de la información y la trazabilidad de los proyectos.</div>
+						</label>
+						<label><input type="radio" name="q1" value="3" data-points="0"> Se utiliza el correo electrónico o el WhatsApp.
+							<div class="feedback">Si el equipo recurre a herramientas no autorizadas o a métodos como el correo electrónico o la mensajería instantánea para la gestión de tareas, la comunicación se vuelve ineficaz y se pierden los beneficios de la colaboración, trazabilidad y organización.</div>
+						</label>
+					</div>
+				</div>
+
+				<div class="question-item">
+					<h3>Cuando el equipo (varias personas) trabajan en un mismo documento, ¿cuál es el método más común?</h3>
+					<div class="option-list" data-question-id="q2">
+						<label><input type="radio" name="q2" value="1" data-points="10" required> Se comparte un enlace a un único documento en la nube (ej. SharePoint, OneDrive, Google Drive).
+							<div class="feedback">Trabajar sobre un único documento compartido, en lugar de enviar archivos adjuntos, asegura que todos tengan acceso a la misma "fuente de verdad". Esto elimina la confusión sobre las versiones, agiliza el trabajo y aumenta la productividad.</div>
+						</label>
+						<label><input type="radio" name="q2" value="2" data-points="5"> Se adjunta el archivo en un correo electrónico o en un mensaje de Teams.
+							<div class="feedback">Si bien usan las herramientas, el equipo aún envía archivos adjuntos, lo que genera múltiples versiones del mismo documento y dificulta la integración de cambios y el seguimiento.</div>
+						</label>
+						<label><input type="radio" name="q2" value="3" data-points="0"> Se utilizan medios físicos como memorias USB o discos duros externos.
+							<div class="feedback">Si el equipo no colabora en línea, se pierde la eficiencia del proceso de trabajo y se crean silos de información. Esto genera una gran pérdida de tiempo en la gestión de versiones y la consolidación de los aportes de cada miembro</div>
+						</label>
+					</div>
+				</div>
+
+				<div class="question-item">
+					<h3>¿Existe una estructura clara y consistente para la ordenación y clasificación de documentos y carpetas en los repositorios compartidos de su equipo?</h3>
+					<div class="option-list" data-question-id="q3">
+						<label><input type="radio" name="q3" value="1" data-points="10" required> Sí. El equipo utiliza un esquema de nomenclatura y organización de archivos que es consistente y conocido por todos. </label>
+						<div class="feedback">Aclaración: Lorem Ipsum</div>
+						<label><input type="radio" name="q3" value="2" data-points="5"> A menudo, en algunos archivos, pero no siempre.
+							<div class="feedback">Aclaración: Lorem Ipsum</div>
+						</label>
+						<label><input type="radio" name="q3" value="3" data-points="0"> No, cada persona del equipo decide qué
+							nombre ponerle al archivo y en donde cree conveniente guardarlo.
+							<div class="feedback">Aclaración: Lorem Ipsum</div>
+						</label>
+					</div>
+				</div>
+
+				<div class="question-item">
+					<h3>Cuando necesita encontrar un documento, ¿cómo se guía para localizarlo de forma fácil y autónoma?</h3>
+					<div class="option-list" data-question-id="q4">
+						<label><input type="radio" name="q4" value="1" data-points="10" required> Me guío por la estructura de
+							carpetas (por proceso, tipo de documento o consecutivo) y utilizo las funciones de búsqueda de la
+							plataforma, encontrándose de manera fácil e independiente.</label>
+						<div class="feedback">Aclaración: Lorem Ipsum</div>
+						<label><input type="radio" name="q4" value="2" data-points="5"> Le pregunto a la persona propietaria del
+							documento o busco en el historial de correos y chats, lo que me toma tiempo, pero lo encuentro. (5
+							puntos)
+							<div class="feedback">Aclaración: Lorem Ipsum</div>
+						</label>
+						<label><input type="radio" name="q4" value="3" data-points="0"> No sé dónde buscarlo y siempre tengo que
+							pedir que me reenvíen el documento.
+							<div class="feedback">Aclaración: Lorem Ipsum</div>
+						</label>
+					</div>
+				</div>
+			</div>
+
+			<div class="question-group" id="dimension2">
+				<h2>2. PD2-Dimensión: Calidad de los Mensajes Asincrónicos (40%)</h2>
+				<p>Esta sección evalúa la claridad, precisión y profesionalismo con los que se elaboran los mensajes para evitar
+					malentendidos.</p>
+
+				<div class="question-item">
+					<h3>Cuando una persona del equipo envía una instrucción, solicitud o cualquier tipo de requerimiento, ¿qué tan
+						clara y completa es la información que recibe?</h3>
+					<div class="option-list" data-question-id="q5">
+						<label><input type="radio" name="q5" value="1" data-points="10" required> La información es clara, concisa y
+							completa. Contiene el contexto y las acciones necesarias, por lo que no necesito pedir aclaraciones
+							adicionales ni hacer llamadas o reuniones para entenderla.
+							<div class="feedback">Aclaración: Lorem Ipsum</div>
+						</label>
+						<label><input type="radio" name="q5" value="2" data-points="5"> Regularmente tengo que pedir más
+							información, aclaraciones sobre la ubicación de documentos, especificaciones, etc. Lo que me toma tiempo
+							para interpretar la solicitud.
+							<div class="feedback">Aclaración: Lorem Ipsum</div>
+						</label>
+						<label><input type="radio" name="q5" value="3" data-points="0"> La comunicación es confusa, se requieren
+							varias interacciones (mensajes, chats, llamadas o reuniones) solo para entender lo que se necesita, lo que
+							consume mucho tiempo.
+							<div class="feedback">Aclaración: Lorem Ipsum</div>
+						</label>
+					</div>
+				</div>
+
+				<div class="question-item">
+					<h3>¿El equipo utiliza un tono profesional y respetuoso en la comunicación escrita, incluso en situaciones de
+						desacuerdo?</h3>
+					<div class="option-list" data-question-id="q6">
+						<label><input type="radio" name="q6" value="1" data-points="10" required> Sí, siempre. El equipo mantiene un
+							tono profesional, lo que fomenta un ambiente de respeto y colaboración, incluso al expresar desacuerdos.
+						</label>
+						<div class="feedback">Aclaración: Lorem Ipsum</div>
+						<label><input type="radio" name="q6" value="2" data-points="5"> A veces. El uso ocasional de frases
+							pasivo-agresivas puede generar un ambiente hostil y afectar la confianza.
+							<div class="feedback">Aclaración: Lorem Ipsum</div>
+						</label>
+						<label><input type="radio" name="q6" value="3" data-points="0"> No, a menudo hay malentendidos y conflictos
+							debido al tono inapropiado en los mensajes, lo que daña las relaciones interpersonales.
+							<div class="feedback">Aclaración: Lorem Ipsum</div>
+						</label>
+					</div>
+				</div>
+
+				<div class="question-item">
+					<h3>Cuando se realizan cambios importantes (ej. cancelación de una reunión, cambio en un valor límite o
+						modificación en una especificación), ¿cómo se comunica?</h3>
+					<div class="option-list" data-question-id="q7">
+						<label><input type="radio" name="q7" value="1" data-points="10" required> Los cambios se documentan
+							inmediatamente en la herramienta (documento, calendario, etc.).</label>
+						<div class="feedback">Aclaración: Lorem Ipsum</div>
+						<label><input type="radio" name="q7" value="2" data-points="5"> Se envía un correo electrónico a todos los
+							involucrados o se publica un mensaje rápido en un chat de Teams o WhatsApp.
+							<div class="feedback">Aclaración: Lorem Ipsum</div>
+						</label>
+						<label><input type="radio" name="q7" value="3" data-points="0"> Los cambios se informan de manera verbal en
+							una reunión o una llamada.
+							<div class="feedback">Aclaración: Lorem Ipsum</div>
+						</label>
+					</div>
+				</div>
+
+				<div class="question-item">
+					<h3>¿El equipo utiliza mecanismos (ej. confirmaciones de lectura, reacciones, resúmenes) para asegurar que los
+						mensajes importantes han sido recibidos y hay interacción con por los receptores?</h3>
+					<div class="option-list" data-question-id="q8">
+						<label><input type="radio" name="q8" value="1" data-points="10" required> Sí, de manera consistente.
+							Utilizamos las funcionalidades de las herramientas (reacciones, resúmenes, etc.) para interactuar con la
+							comunicación enviada. </label>
+						<div class="feedback">Aclaración: Lorem Ipsum</div>
+						<label><input type="radio" name="q8" value="2" data-points="5"> A veces. La confirmación es irregular y a
+							menudo se requiere preguntar por un "ok" o "recibido" en un mensaje adicional.
+							<div class="feedback">Aclaración: Lorem Ipsum</div>
+						</label>
+						<label><input type="radio" name="q8" value="3" data-points="0"> No. Se asume que mensaje enviado es igual a
+							mensaje recibido.
+							<div class="feedback">Aclaración: Lorem Ipsum</div>
+						</label>
+					</div>
+				</div>
+			</div>
+
+			<div class="question-group" id="dimension3">
+				<h2>3. PD3-Dimensión: Cultura de la Corresponsabilidad y la Colaboración (30%)</h2>
+				<p>Esta dimensión evalúa el nivel de compromiso del equipo con la colaboración y la responsabilidad.</p>
+
+				<div class="question-item">
+					<h3>Cuando se genera una información, documento o proceso que podría ser útil para el equipo, ¿qué se hace?
+					</h3>
+					<div class="option-list" data-question-id="q9">
+						<label><input type="radio" name="q9" value="1" data-points="10" required> Se que debo definir un nombre
+							según estructura y debo dejarlo en un canal o repositorio central designado para ello. </label>
+						<div class="feedback">Aclaración: Lorem Ipsum</div>
+						<label><input type="radio" name="q9" value="2" data-points="5"> Lo genero y lo guardo en algún sitio de mi
+							PC y espero a que lo solicite para compartirlo por correo o chat.
+							<div class="feedback">Aclaración: Lorem Ipsum</div>
+						</label>
+						<label><input type="radio" name="q9" value="3" data-points="0"> Se mantiene la información de forma personal
+							y se muestra el día de la reunión.
+							<div class="feedback">Aclaración: Lorem Ipsum</div>
+						</label>
+					</div>
+				</div>
+
+				<div class="question-item">
+					<h3>Cuando se necesita definir un procedimiento, un valor límite o un estándar de trabajo, ¿cómo se asegura el
+						equipo de que esta información esté accesible y sea la única fuente de verdad?</h3>
+					<div class="option-list" data-question-id="q10">
+						<label><input type="radio" name="q10" value="1" data-points="10" required> La información se documenta en un
+							repositorio central del equipo (ej. SharePoint, Wiki).</label>
+						<div class="feedback">Aclaración: Lorem Ipsum</div>
+						<label><input type="radio" name="q10" value="2" data-points="5"> La información se envía por correo
+							electrónico o se comparte en un chat.
+							<div class="feedback">Aclaración: Lorem Ipsum</div>
+						</label>
+						<label><input type="radio" name="q10" value="3" data-points="0"> La información se transmite de forma verbal
+							o en conversaciones o chat.
+							<div class="feedback">Aclaración: Lorem Ipsum</div>
+						</label>
+					</div>
+				</div>
+			</div>
+
+			<button type="submit">Calcular IMCAC</button>
+		</form>
+
+		<div id="result">
+			<h2>Resultado del IMCAC</h2>
+			<p><strong>Puntuación Total:</strong> <span id="totalScore"></span></p>
+			<p><strong>Nivel de Madurez:</strong> <span id="maturityLevel"></span></p>
+			<p id="maturityExplanation"></p>
+		</div>
+	</div>
+
+	<script>
+		document.addEventListener('DOMContentLoaded', function () {
+			const form = document.getElementById('imcacForm');
+			const resultDiv = document.getElementById('result');
+			const totalScoreSpan = document.getElementById('totalScore');
+			const maturityLevelSpan = document.getElementById('maturityLevel');
+			const maturityExplanationP = document.getElementById('maturityExplanation');
+			const progressBar = document.getElementById('progressBar');
+			const totalScoredQuestions = 10; // 10 preguntas puntuables (q1 a q10)
+
+			// Función para desordenar un array (Fisher-Yates shuffle)
+			function shuffleArray(array) {
+				for (let i = array.length - 1; i > 0; i--) {
+					const j = Math.floor(Math.random() * (i + 1));
+					[array[i], array[j]] = [array[j], array[i]];
+				}
+				return array;
+			}
+
+			// Randomize options for each question group
+			document.querySelectorAll('.option-list').forEach(optionList => {
+				const options = Array.from(optionList.children);
+				const shuffledOptions = shuffleArray(options);
+				optionList.innerHTML = ''; // Clear existing options
+				shuffledOptions.forEach(option => optionList.appendChild(option));
+			});
+
+			function updateProgress() {
+				// Contar solo las preguntas puntuables respondidas (excluyendo q0)
+				const answeredQuestions = document.querySelectorAll('input[name^="q"]:not([name="q0"]):checked').length;
+				const progress = totalScoredQuestions > 0 ? (answeredQuestions / totalScoredQuestions) * 100 : 0;
+				progressBar.style.width = `${progress}%`;
+				progressBar.textContent = `${Math.round(progress)}%`;
+			}
+
+			// Event listener para actualizar la barra de progreso en tiempo real
+			form.addEventListener('change', function (event) {
+				// Actualizar solo si se cambia una pregunta puntuable
+				if (event.target.type === 'radio' && event.target.name !== 'q0') {
+					updateProgress();
+				}
+			});
+
+			form.addEventListener('submit', function (event) {
+				event.preventDefault();
+
+				let scoreD1 = 0; // Dimensión 1: Adopción y Uso de Herramientas
+				let scoreD2 = 0; // Dimensión 2: Calidad de los Mensajes Asincrónicos
+				let scoreD3 = 0; // Dimensión 3: Cultura de la Corresponsabilidad y la Colaboración
+
+				// 1. Limpiar estilos y feedback de selecciones anteriores
+				document.querySelectorAll('.option-list label').forEach(label => {
+					label.classList.remove('selected', 'green', 'yellow', 'red');
+					const feedback = label.querySelector('.feedback');
+					if (feedback) feedback.style.display = 'none';
+				});
+
+				// 2. Calcular puntajes y aplicar feedback visual a las respuestas seleccionadas
+				document.querySelectorAll('.option-list[data-question-id]').forEach(questionDiv => {
+					const questionId = questionDiv.dataset.questionId;
+					const selectedOption = form.querySelector(`input[name="${questionId}"]:checked`);
+
+					if (selectedOption) {
+						const points = parseInt(selectedOption.dataset.points);
+						const selectedLabel = selectedOption.closest('label');
+						const dimensionId = questionDiv.closest('.question-group').id;
+
+						// Sumar puntos a la dimensión correspondiente
+						if (dimensionId === 'dimension1') scoreD1 += points;
+						else if (dimensionId === 'dimension2') scoreD2 += points;
+						else if (dimensionId === 'dimension3') scoreD3 += points;
+
+						// Aplicar estilos y mostrar feedback para la opción seleccionada
+						if (selectedLabel && questionId !== 'q0') { // No aplicar a la pregunta de tamaño de equipo
+							let colorClass = '';
+							if (points === 10) colorClass = 'green';
+							else if (points === 5) colorClass = 'yellow';
+							else colorClass = 'red';
+
+							selectedLabel.classList.add('selected', colorClass);
+							const feedbackDiv = selectedLabel.querySelector('.feedback');
+							if (feedbackDiv) {
+								feedbackDiv.style.display = 'block';
+							}
+						}
+					}
+				});
+
+				// Cálculo del puntaje máximo posible por cada dimensión:
+				const TPMD1 = 40; // 4 preguntas * 10 puntos
+				const TPMD2 = 40; // 4 preguntas * 10 puntos
+				const TPMD3 = 20; // 2 preguntas * 10 puntos
+
+				// Fórmula IMCAC=(SPD1×30%)/TPMD1 + (SPD2×40%)/TPMD2 + (SPD3×30%)/TPMD3
+				const imcacScore = (scoreD1 * 30) / TPMD1 + (scoreD2 * 40) / TPMD2 + (scoreD3 * 30) / TPMD3;
+
+				totalScoreSpan.textContent = `${imcacScore.toFixed(2)}%`;
+
+				let maturityLevel = '';
+				let explanation = '';
+
+				if (imcacScore >= 90) {
+					maturityLevel = 'Madurez Alta - Nivel Pionero.';
+					explanation = 'El equipo tiene una cultura de comunicación asincrónica bien establecida. Sus procesos son eficientes, la comunicación fluye sin interrupciones y existe una clara corresponsabilidad por parte de todos los miembros. Comunicación efectiva y colaboración correcta.';
+				} else if (imcacScore >= 50) {
+					maturityLevel = 'Madurez Media - Nivel Adaptativo.';
+					explanation = 'El equipo se encuentra en un proceso de transición. Ya ha adoptado algunas prácticas de comunicación asincrónica, pero aún existen áreas de mejora. Se requiere capacitación y el establecimiento de protocolos más claros.';
+				} else {
+					maturityLevel = 'Madurez Baja - Nivel Básico.';
+					explanation = 'El equipo depende en gran medida de la comunicación sincrónica y enfrenta desafíos como la "responsabilidad diluida" y la baja calidad de los mensajes. Existe una gran oportunidad para iniciar la transformación cultural y de procesos hacia un cambio cultural organizacional de comunicación asincrónica y colaborativa.';
+				}
+
+				maturityLevelSpan.textContent = maturityLevel;
+				maturityExplanationP.textContent = explanation;
+
+				resultDiv.style.display = 'block';
+				resultDiv.scrollIntoView({ behavior: 'smooth' });
+			});
+		});
+	</script>
+</body>
+
+</html>
